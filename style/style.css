@@ -1,0 +1,224 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap'); /*fonte do google*/
+
+@font-face { /* fonte externa */
+    font-family: 'Android'; /* coloquei o nome desejado na fonte*/
+    src: url('/fontes/idroid.otf') format('opentype'); /* caminho ate o arquivo*/
+    font-weight: normal;
+}
+
+/*
+    Essa é uma outra forma de aplicar as cores ao meu site. :root é uma pseudo-classe
+    que todo o documento tem. Essa é a raiz da árvore no meu documento. Tudo que eu definir
+    em :root vai servir pro documento inteiro.
+    Vamos declarar variaveis em CSS dentro de :root
+
+    Toda variável nesse caso vai começar com --
+
+    Uma grande vantagem de criar as variáveis pras cores é que se o cliente quiser mudar as
+    cores do site é só mudar diretamente em :root
+*/
+
+/* Procure fazer seu CSS na mesma sequência do HTML, fica melhor organizado*/
+
+:root {
+    --cor0: #c5ebd6;
+    --cor1: #83e1ad;
+    --cor2: #3ddc84;
+    --cor3: #2fa866;
+    --cor4: #1a5c37;
+    --cor5: #063d1e; 
+
+    --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
+    --fonte-destaque: "Bebas Neue", sans-serif; /*tenho o @import lá acima dessa fonte*/
+    --fonte-android: 'Android', sans-serif;
+}
+
+/* Essa é uma configuração global* {} . Quando criamos tags elas já vem com algumas coisas definidas como margin por exemplo, e para trabalhar melhor o projeto, vamos alterar algumas dessas coisas com a configuração global, que vale para todos os elementos, para facilitar : 
+*/
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* agora quando for colocar uma cor posso fazer dessa forma: */
+body {
+    background-color: var(--cor0);
+    font-family: var(--fonte-padrao);
+}
+
+a.externo::after {
+    content: '\00A0\1F517';
+}
+
+header {
+    background-image:linear-gradient(to bottom, var(--cor3), var(--cor5));
+    min-height: 150px; /* o mínimo de altura vai aparecer na tela*/
+    text-align: center; /* centralizei o texto */
+    padding-top: 40px; /*espaçamento entre a borda superior e o texto*/
+}
+
+header > h1 {
+    color: white;
+    font-family: var(--fonte-destaque);
+    font-size: 3em;
+    margin-bottom: 20px; /* espaçemento entre meu h1 e o <p> */
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.414);
+    font-weight: normal;
+}
+
+header > p {
+    font-family: var(--fonte-padrao);
+    font-size: 1.2em;
+    color: white;
+    max-width: 600px; /*ao colocar a width ele virou um bloco e ai tive que usar o margin auto para centralizar */
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: auto;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.316);
+}
+
+nav {
+    padding: 10px;
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.184);
+}
+
+nav > a {
+    color: var(--cor1);
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition-duration: 0.5s; /* quando mexer o mouse encima vai demorar 0.5s de transição */
+}
+
+nav > a:hover {
+    color: var(--cor5);
+    background-color: var(--cor3);
+}
+
+main { /*perceba configuração padrão vem acima das demais. Tem outras edições de main, mas vem abaixo*/
+    min-width: 300px;
+    max-width: 1000px; /*quando chegar a essa medida na tela ele para de crescer*/
+    margin: auto; /* pra quando a gente ver em tela cheia o main não crescer*/
+    margin-bottom: 30px; /* para descolar o conteúdo principal do rodapé*/
+    background-color: white;
+    padding: 20px; /* para criar um espaçamento dentro do main e o texto não ficar grudado nas bordas*/
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.45); /*sombra discreta na borda*/
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+main h1 {
+    font-family: var(--fonte-android);
+    color: var(--cor5);
+    font-weight: normal;
+    font-size: 1.8em;
+}
+
+main h2 {
+    font-family: var(--fonte-android);
+    color: var(--cor4);
+    font-size: 1.3em;
+    background-image: linear-gradient(to right, var(--cor1), transparent);
+    text-indent: 8px; /* afastei um pouco meu h2 da borda */
+    font-weight: normal;
+}
+
+main p { /* perceba q coloquei mais p sem sinal de maior que entre eles, isso porque dentro do meu mian
+    tenho article e outras tags, colocando o seletor dessa forma eu indico que esse <p> pode estar em qualquer 
+    nível dentro de main, dentro de outra tags tbm */
+    margin: 15px 0px; /* criei imagem em cima e embaixo de todos os parágrafos */
+    text-align: justify;
+    text-indent: 30px; /* recuo do início do parágrafo */
+    font-size: 1em;
+    line-height: 1.5em; /* 1m aqui quer dizer que não tera espaço entre uma linha e outra, defini o espaço entre linhas */
+}
+
+main strong { /* posso configurar a tag strong pelo css também */
+    color: var(--cor4);
+    font-weight: bold;
+}
+
+main a { /* configurando todo link dentro de main */
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--cor5);
+    background-color:var(--cor1);
+    padding: 1px 2px;
+}
+
+main a:hover {
+    text-decoration: underline;
+    color: var(--cor4);
+}
+
+main img { /* minhas imagens estão dentro do main, então preciso criar o seletor dessa forma para modifica-las */
+    width: 100%; /*vai se adaptando ao tamanho da tela*/
+}
+
+main img.pequena {
+    max-width: 350px;
+    display: block; /* ao colocar apenas margin auto a img não centraliza, isso porque ela por padrão não é um bloco! Então use display block + margin auto para funcionar */
+    margin:auto;
+}
+
+div.video {
+    background-color: var(--cor5);
+    margin: 0px -20px 30px -20px;
+    padding: 20px;
+    padding-bottom: 59%; /*as barras pretas laterais que ficam ao dar play no video configuramos com essa linha*/
+    position: relative;
+}
+
+div.video > iframe {
+    position: absolute; /*quando coloco absolute consigo modificar top e left width height*/
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+}
+
+aside {
+    background-color: var(--cor1);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.257);
+}
+
+aside h3 {
+    background-color: var(--cor4);
+    color: white;
+    padding: 10px;
+    margin: -10px -10px 0px -10px; /* -10 porque quero que a margin creça pra fora */
+    border-radius: 10px 10px 0px 0px;
+}
+
+aside > ul {
+    list-style-type: '\2714\00A0\00A0'; /* troquei as bolinhas por simbolo de check. O \00A0 é pra dar espaço sem quebra entre o bullit e o texto*/ /*Mas essa declaração não é compativel com todo navegador*/
+    list-style-position: inside; /* para deixar as bolinhas pro lado de dentro */
+    columns: 2; /*determinei o número de colunas da minha lista*/
+}
+
+footer {
+    background-color: var(--cor5);
+    color: white;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 5px;
+}
+
+footer a {
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: var(--cor1);
+}
+
+/* quando usamos o sinal de maioe ex: footer > p > a indicamos o caminho até aquela exata tag, agora se faço por ex: footer a estou configurando todos os links que estão dentro de footer*/
